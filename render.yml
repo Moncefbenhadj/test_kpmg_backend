@@ -1,0 +1,2 @@
+buildCommand: npm install
+buildDirectory: Test_kpmg_backend
