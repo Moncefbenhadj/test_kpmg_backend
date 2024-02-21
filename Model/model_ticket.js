@@ -8,8 +8,8 @@ const ticketSchema = mongoose.Schema({
         type : String,
         enum : ['open','closed'],
         default : 'open'},
-    attachment: {type : String, required : false},
-    remarks: {type : String, required : false}
+    attachment: {type : String, required : false ,default : ''},
+    remarks: {type : String, required : false, default : ''}
 })
 
 const ticket = mongoose.model("Ticket", ticketSchema)

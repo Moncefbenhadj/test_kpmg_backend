@@ -1,5 +1,4 @@
 import Ticket from "../Model/model_ticket.js";
-import mongoose from "mongoose";
 
 async function creation (req, res)  {
     try {
@@ -51,6 +50,8 @@ async function modifier (req, res) {
         ticket.description = description || ticket.description
         ticket.etat = etat || ticket.etat
         ticket.deadline = deadline || ticket.deadline
+        ticket.remark = remark || ticket.remark
+        ticket.attachment = attachment || ticket.attachment
         await ticket.save();
         res.status(200).json(ticket);
     } catch (err) {
