@@ -42,19 +42,21 @@ async function afficher_etat (req, res) {
 
 async function modifier (req, res) {
     try {
-        console.log('first')
+        //console.log('first')
         let { id } = req.params;
-        let {intitule, description, etat, deadline, remarks, attachment} = req.body;
+        let {intitule, description, etat, deadline, remarks} = req.body;
         let ticket = await Ticket.findById(id);
-        console.log(req.body)
-        console.log('avant',ticket)
+        //console.log(req.body)
+       // console.log('avant',ticket)
         ticket.intitule = intitule || ticket.intitule
         ticket.description = description || ticket.description
         ticket.etat = etat || ticket.etat
         ticket.deadline = deadline || ticket.deadline
-        ticket.remarks = remarks || ticket.remarks
-        ticket.attachment = attachment || ticket.attachment
-        console.log('apres',ticket)
+        ticket.remarks = remarks || ticket.remarks 
+        // ticket.attachment.fileName = attachment.originalname 
+        // ticket.attachment.filePath = attachment.path
+        // ticket.attachment.fileType = attachment.mimetype
+        
         await ticket.save();
         res.status(200).json(ticket);
     } catch (err) {

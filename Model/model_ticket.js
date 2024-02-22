@@ -8,7 +8,11 @@ const ticketSchema = mongoose.Schema({
         type : String,
         enum : ['open','closed'],
         default : 'open'},
-    attachment: {type : String, required : false ,default : ''},
+    attachment : {
+        fileName: {type: String},
+        filePath: {type: String},
+        fileType: {type: String}
+    },
     remarks: {type : String, required : false, default : ''}
 })
 

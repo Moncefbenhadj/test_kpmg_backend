@@ -3,19 +3,31 @@ import mongoose from "mongoose";
 import route_ticket from "./Route/route_ticket.js"
 import route_user from "./Route/route_user.js"
 import cors from "cors"
+import dotenv from "dotenv"
+dotenv.config()
+//import path from "path"
+//import { fileURLToPath } from 'url';
+
+
+//import path  from "path";
 
 let app = express()
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({extended : true})); 
 
-let URI = 'mongodb+srv://Moncef:moncef123@cluster0.yruvkt3.mongodb.net/test1_kpmg?retryWrites=true&w=majority' ; 
-mongoose.connect(URI)
+
+mongoose.connect(process.env.URI)
 .then(()=> console.log("Connexion a Mongo réussie !"))
 .catch(()=> console.log("Connexion a Mongo échouée"));
 
 app.use('/ticket', route_ticket)
 app.use('/user', route_user)
 
-const port = process.env.PORT || 3000;
+
+//app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+
+
+const port = process.env.PORT;
 app.listen(port, () => console.log(`Le serveur tourne sur le port: ${port}`));
